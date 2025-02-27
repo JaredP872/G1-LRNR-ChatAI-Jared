@@ -1,7 +1,16 @@
+//  imports the React library
 import React from "react";
+// render: A function used to render a React component in a virtual DOM for testing.
+// screen: An object that provides query methods to find elements in the rendered component
+// fireEvent: A utility to simulate user interactions (e.g., clicking a button, typing in an input).
+
 import { render, screen, fireEvent } from "@testing-library/react";
+// MemoryRouter is used in tests to simulate routing behavior without requiring a browser environment.
 import { MemoryRouter } from "react-router-dom";
-import Home from "./Home"; // Ensure this matches your file structure
+// This imports the Home component from the ./Home file.
+// Ensure that the file path (./Home) matches the actual location of your Home component in your project structure.
+import Home from "./Home";
+// This imports @testing-library/jest-dom, a library that adds custom matchers (e.g., toBeInTheDocument, toHaveTextContent) to Jest.
 import "@testing-library/jest-dom";
 
 test("renders Home page correctly", () => {
@@ -11,36 +20,37 @@ test("renders Home page correctly", () => {
     </MemoryRouter>
   );
 
-  // ✅ Check if the heading appears
+  // Checks if the heading appears
   expect(
     screen.getByText("Your guided path to programming enlightenment")
   ).toBeInTheDocument();
 
-  // ✅ Check if the button exists and has the correct text
+  // Checks if the button exists and has the correct text
   const startButton = screen.getByRole("button", { name: /BEGIN JOURNEY/i });
   expect(startButton).toBeInTheDocument();
 
-  // ✅ Check if the features exist
+  // Checks if the features exist
   expect(screen.getByText("Personalized Quizzes")).toBeInTheDocument();
   expect(screen.getByText("Rewarding")).toBeInTheDocument();
   expect(screen.getByText("Personal SME")).toBeInTheDocument();
 });
 
 test("navigates to quiz when 'BEGIN JOURNEY' is clicked", () => {
-  // Mock window.location.href
+  // Mocks window.location.href
   delete window.location;
   window.location = { href: jest.fn() };
 
+  // renders the home page
   render(
     <MemoryRouter>
       <Home />
     </MemoryRouter>
   );
 
-  // ✅ Simulate button click
+  // Simulates button click
   const startButton = screen.getByRole("button", { name: /BEGIN JOURNEY/i });
   fireEvent.click(startButton);
 
-  // ✅ Check if it redirects to /quiz
+  // Checks if it redirects to /quiz
   expect(window.location.href).toBe("/quiz");
 });

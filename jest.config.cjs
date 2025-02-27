@@ -8,8 +8,8 @@ module.exports = {
     "/node_modules/(?!lucide-react)", // Ensure Jest transforms lucide-react
   ],
   moduleNameMapper: {
-    "^lucide-react$": "<rootDir>/node_modules/lucide-react", // ✅ Correct module resolution
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy", // ✅ Mock styles
+    "^lucide-react$": "<rootDir>/node_modules/lucide-react", // This line corrects module resolution
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy", // This line mocks styles
   },
-  extensionsToTreatAsEsm: [".jsx"], // Ensure Jest treats JSX files as ES Modules
+  extensionsToTreatAsEsm: [".jsx"], // This line ensures Jest treats JSX files as ES Modules
 };

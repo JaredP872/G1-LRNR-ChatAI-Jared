@@ -1,3 +1,4 @@
+// imports the react library
 import React from "react";
 import {
   render,
@@ -6,8 +7,10 @@ import {
   waitFor,
   act,
 } from "@testing-library/react";
-import Quiz from "./Quiz"; // Ensure the correct import path
-import "@testing-library/jest-dom"; // ✅ Import this to enable `toHaveTextContent`
+// Ensure the correct import path
+import Quiz from "./Quiz";
+// Import this to enable `toHaveTextContent`
+import "@testing-library/jest-dom";
 
 // Mock fetch API
 global.fetch = jest.fn(() =>
