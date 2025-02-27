@@ -1,4 +1,4 @@
-// imports the react library
+// Imports the react library
 import React from "react";
 import {
   render,
